@@ -1,0 +1,12 @@
+---
+  - include: server_setup.yml
+
+  - include: install_percona.yml
+    when: mysql_variant == 'percona'
+
+  - include: install_mysql.yml
+    when: mysql_variant == 'mysql'
+
+  - include: install_mariadb.yml
+    when: mysql_variant == 'mariadb'
+

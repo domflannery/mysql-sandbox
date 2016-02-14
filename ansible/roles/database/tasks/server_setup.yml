@@ -1,0 +1,12 @@
+---
+  - name: install python selinux bindings
+    yum: name=libselinux-python state=present
+
+  - name: install mysql python
+    yum: name=MySQL-python state=present
+
+  - name: copy over my.cnf file
+    copy: src=roles/database/files/my.cnf dest=/etc/my.cnf owner=root mode=0644
+
+  - name: Install Percona Repo
+    yum: name=http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm state=present

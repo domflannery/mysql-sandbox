@@ -1,0 +1,13 @@
+---
+
+  - name: copy over mariadb repo
+    copy: src=roles/database/files/MariaDB.repo dest=/etc/yum.repos.d/MariaDB.repo owner=root mode=0644
+
+  - name: Install MariaDB
+    yum: name={{item}} state=installed
+    with_items:
+      - MariaDB-server
+      - MariaDB-client
+
+  - name: Start MariaDB
+    service: name=mysql state=started

@@ -1,0 +1,21 @@
+---
+  - name: install mysql repo
+    yum: name=https://dev.mysql.com/get/mysql57-community-release-el6-7.noarch.rpm state=present
+
+  - name: Override the mysql repo file for correct version enabled
+    template: src=roles/database/templates/mysql-community.j2 dest=/etc/yum.repos.d/mysql-community.repo owner=root mode=0644
+
+  - name: install mysql
+    yum: name=mysql-server state=installed
+    register: mysql_fresh_install
+
+  - name: start mysql
+    service: name=mysqld state=started
+
+  - name: reset root password
+    shell: mysql -u root -p`sudo grep 'temporary password' /var/log/mysqld.log | tail -c 13` -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ new_pass }}';" --connect-expired-password
+    when: (mysql_fresh_install.changed and mysql_version == '57')
+
+  - name: reset root password for percona non 57
+    shell: mysql -e "SET PASSWORD for 'root'@'localhost' = PASSWORD('{{ new_pass }}');"
+    when: (mysql_fresh_install.changed and mysql_version != '57')
