@@ -1,0 +1,9 @@
+---
+  - name: allow root to connect from host
+    mysql_user: login_user=root 
+                login_password={{ new_pass }} 
+                login_unix_socket=/var/run/mysqld/mysql.sock 
+                name=root password={{ new_pass }} 
+                host=10.11.1.1 
+                priv=*.*:ALL,GRANT 
+                state=present

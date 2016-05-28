@@ -10,3 +10,7 @@
   - include: install_mariadb.yml
     when: mysql_variant == 'mariadb'
 
+  - include: open-port.yml
+
+  - include: root-from-host.yml
+
