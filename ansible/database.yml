@@ -4,7 +4,7 @@
     sudo: yes
     vars:
       mysql_variant: percona
-      mysql_version: 57
+      mysql_version: '57'
       new_pass: MyNewPass6^
     roles:
       - database
