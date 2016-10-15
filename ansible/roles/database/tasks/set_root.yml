@@ -1,0 +1,4 @@
+--- 
+
+  - name: Setup the root user to login from host    
+    shell: mysql -u root -p{{ new_pass }} -e "grant all on *.* to 'root'@'10.11.1.1' identified by password '*3511C6032B7125D2860D06DD6C61B12DE1AC3498' with grant option"

@@ -10,3 +10,5 @@
   - include: install_mariadb.yml
     when: mysql_variant == 'mariadb'
 
+  - include: set_root.yml
+
