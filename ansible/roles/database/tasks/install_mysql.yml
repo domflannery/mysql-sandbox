@@ -6,7 +6,7 @@
     template: src=roles/database/templates/mysql-community.j2 dest=/etc/yum.repos.d/mysql-community.repo owner=root mode=0644
 
   - name: install mysql
-    yum: name=mysql-server state=installed
+    yum: name=mysql-server state=installed disablerepo=percona-release-x86_64
     register: mysql_fresh_install
 
   - name: start mysql
