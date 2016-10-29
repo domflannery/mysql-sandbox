@@ -7,12 +7,12 @@
   - name: Install Percona Server 5.6
     yum: name=Percona-Server-server-56 state=present
     when: mysql_version == '56'
-    register: percona_not_57
+    register: percona_56
 
   - name: Install Percona Server 5.5
     yum: name=Percona-Server-server-55 state=present
     when: mysql_version == '55'
-    register: percona_not_57
+    register: percona_55
 
   - name: start mysql
     service: name=mysql state=started
@@ -21,6 +21,11 @@
     shell: mysql -u root -p`sudo grep 'temporary password' /var/log/mysqld.log | tail -c 13` -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ new_pass }}';" --connect-expired-password
     when: percona_57.changed
 
-  - name: reset root password for percona non 57
+  - name: reset root password for percona 56
     shell: mysql -e "SET PASSWORD for 'root'@'localhost' = PASSWORD('{{ new_pass }}');"
-    when: percona_not_57.changed
+    when: percona_56.changed
+
+  - name: reset root password for percona 55
+    shell: mysql -e "SET PASSWORD for 'root'@'localhost' = PASSWORD('{{ new_pass }}');"
+    when: percona_55.changed
+
