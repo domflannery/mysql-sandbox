@@ -1,7 +1,8 @@
 ---
   - hosts: dbs
     remote_user: vagrant
-    sudo: yes
+    become: true
+    become_user: root
     vars:
       mysql_variant: percona
       mysql_version: '57'
