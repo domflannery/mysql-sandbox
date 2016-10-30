@@ -39,7 +39,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", disabled: "true"
     ansible.vm.network "forwarded_port", guest: 22, host: 2205
     ansible.vm.synced_folder "ansible/", "/home/vagrant/ansible"
-    ansible.vm.synced_folder ".vagrant/", "/home/vagrant/.v"
+    ansible.vm.synced_folder ".vagrant/", "/home/vagrant/.v", mount_options: ["dmode=775,fmode=700"]
     ansible.vm.provision "shell", inline: "sudo yum -y install epel-release; sudo yum -y install ansible"
     ansible.vm.hostname = "ansible"
   end
