@@ -1,6 +1,6 @@
-db1 ansible_ssh_host=10.11.1.103  ansible_ssh_user=vagrant ansible_ssh_private_key_file=/home/vagrant/.v/machines/db1/virtualbox/private_key
-db2 ansible_ssh_host=10.11.1.104 ansible_ssh_user=vagrant ansible_ssh_private_key_file=/home/vagrant/.v/machines/db2/virtualbox/private_key
-control ansible_connection=local
+db1 ansible_ssh_host=10.11.1.103  ansible_ssh_user=vagrant ansible_ssh_private_key_file=/home/vagrant/.v/machines/db1/virtualbox/private_key ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+db2 ansible_ssh_host=10.11.1.104 ansible_ssh_user=vagrant ansible_ssh_private_key_file=/home/vagrant/.v/machines/db2/virtualbox/private_key ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+control ansible_connection=local 
 
 [dbs]
 db1
