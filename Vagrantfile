@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     db1.vm.network "private_network", ip: "10.11.1.103"
     db1.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", disabled: "true"
     db1.vm.network "forwarded_port", guest: 22, host: 2203
-#    db1.vm.network "forwarded_port", guest: 3306, host: 3307
+    db1.vm.synced_folder "/Users/dflannery/workspace/src/github.com/domflannery/kibitz", "/home/vagrant/bin"
 
   end
 
