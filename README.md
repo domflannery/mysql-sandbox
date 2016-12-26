@@ -1,1 +1,3 @@
-# mysql-57-sandbox
+# mysql-sandbox
+
+Please see the wiki for more information.
