@@ -1,0 +1,7 @@
+-- commands to set db1 network card to 10 seconds delay
+[root@db1 ~]# tc qdisc add dev eth1 root handle 1: prio
+[root@db1 ~]# tc qdisc add dev eth1 parent 1:1 handle 2: netem delay 10000ms
+[root@db1 ~]# tc filter add dev eth1 parent 1:0 protocol ip pref 55 handle ::55 u32 match ip dst 10.11.1.104 flowid 2:1
+
+-- command to change back to no delay
+[root@db1 ~]# tc qdisc change dev eth1 parent 1:1 handle 2: netem delay 1000ms
