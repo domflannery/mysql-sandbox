@@ -4,7 +4,7 @@ USE `learning_mysql`;
 DROP procedure IF EXISTS `gendata`;
 
 DELIMITER $$
-USE `Test`$$
+USE `learning_mysql`$$
 CREATE DEFINER=`root`@`10.11.1.1` PROCEDURE `gendata`(in loopLimit int)
 begin
 	declare c int;
@@ -21,3 +21,10 @@ begin
 end$$
 
 DELIMITER ;
+
+drop table if exists tbl;
+create table tbl (
+tblId int not null primary key auto_increment,
+fld varchar(255),
+updatedAt timestamp not null default current_timestamp
+);
