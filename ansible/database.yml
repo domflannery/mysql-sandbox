@@ -7,5 +7,6 @@
       mysql_variant: percona
       mysql_version: '57'
       new_pass: MyNewPass6^
+      with_data: false
     roles:
       - database
