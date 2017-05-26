@@ -20,3 +20,12 @@
       login_user: root
       login_password: "{{ new_pass }}"
       config_file: "/etc/my.cnf"
+
+  - name: Import sakila data
+    mysql_db:
+      state: import
+      name: all
+      target: /tmp/sakila-db/sakila-data.sql
+      login_user: root
+      login_password: "{{ new_pass }}"
+      config_file: "/etc/my.cnf"
