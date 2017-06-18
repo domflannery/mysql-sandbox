@@ -1,0 +1,31 @@
+---
+
+  - name: Fetch sakila data
+    get_url: 
+      url: http://downloads.mysql.com/docs/sakila-db.tar.gz 
+      dest: /tmp/s.tar.gz
+      mode: 0660
+
+  - name: Unarchive data
+    unarchive:
+      src: /tmp/s.tar.gz
+      dest: /tmp
+      remote_src: yes
+
+  - name: Import sakila schema
+    mysql_db:
+      state: import
+      name: all
+      target: /tmp/sakila-db/sakila-schema.sql
+      login_user: root
+      login_password: "{{ new_pass }}"
+      config_file: "/etc/my.cnf"
+
+  - name: Import sakila data
+    mysql_db:
+      state: import
+      name: all
+      target: /tmp/sakila-db/sakila-data.sql
+      login_user: root
+      login_password: "{{ new_pass }}"
+      config_file: "/etc/my.cnf"

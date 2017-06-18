@@ -12,3 +12,6 @@
 
   - include: set_root.yml
 
+  - include: sakila.yml
+    when: with_data 
+
