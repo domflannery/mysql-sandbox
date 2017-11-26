@@ -2,3 +2,9 @@
 
   - name: Setup the root user to login from host    
     shell: mysql -u root -p{{ new_pass }} -e "grant all on *.* to 'root'@'10.11.1.1' identified by '{{ new_pass }}' with grant option"
+    when: mysql_variant != 'mariadb'
+
+  - name: Setup the root user to login from host    
+    shell: mysql -e "grant all on *.* to 'root'@'10.11.1.1' identified by '{{ new_pass }}' with grant option"
+    when: mysql_variant == 'mariadb'
+    

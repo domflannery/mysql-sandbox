@@ -1,17 +1,18 @@
 ---
-  - include: server_setup.yml
+  - import_tasks: server_setup.yml
 
-  - include: install_percona.yml
+  - import_tasks: install_percona.yml
     when: mysql_variant == 'percona'
 
-  - include: install_mysql.yml
+  - import_tasks: install_mysql.yml
     when: mysql_variant == 'mysql'
 
-  - include: install_mariadb.yml
+  - import_tasks: install_mariadb.yml
     when: mysql_variant == 'mariadb'
 
-  - include: set_root.yml
+  - import_tasks: set_root.yml
 
-  - include: sakila.yml
+  - import_tasks: sakila.yml
     when: with_data 
+
 
